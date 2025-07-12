@@ -35,10 +35,12 @@ public class MiniGameManager : MonoBehaviour
     private void OnEnable()
     {
         Dynamo.Success += Success;
+        Fuses.Success += Success;
     }
     private void OnDisable()
     {
         Dynamo.Success -= Success;
+        Fuses.Success -= Success;
     }
 
     private void Start()
