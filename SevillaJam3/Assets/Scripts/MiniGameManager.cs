@@ -38,6 +38,7 @@ public class MiniGameManager : MonoBehaviour
         Fuses.Success += Success;
         Radio.Success += Success;
         Bucket.Success += Success;
+        Map.Success += Success;
     }
     private void OnDisable()
     {
@@ -45,6 +46,7 @@ public class MiniGameManager : MonoBehaviour
         Fuses.Success -= Success;
         Radio.Success -= Success;
         Bucket.Success -= Success;
+        Map.Success -= Success;
     }
 
     private void Start()

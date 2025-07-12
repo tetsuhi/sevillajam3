@@ -9,27 +9,20 @@ public class Bucket : MonoBehaviour
     public GameObject bucket;
     public Transform drop;
     public Transform centerPoint;
-    public int direction = 1;
-    public int speed = 4;
-
-    private Coroutine bucketCoroutine;
+    private int direction = 1;
+    private int maxSpeed = 9;
+    private int speed;
 
     private bool success;
     public static event Action<bool> Success;
 
     private void OnEnable()
     {
+        speed = maxSpeed;
         success = false;
-        drop.localPosition = Vector3.right * UnityEngine.Random.Range(-3.5f, 3.6f);
+        drop.localPosition = Vector3.right * UnityEngine.Random.Range(-3.5f, 3.5f);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (!success)
@@ -44,16 +37,16 @@ public class Bucket : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            speed = 0;
-            bucketCoroutine = StartCoroutine("PauseBucket");
+            StartCoroutine("PauseBucket");
             CheckCompletion();
         }
     }
 
     IEnumerator PauseBucket()
     {
+        speed = 0;
         yield return new WaitForSeconds(.5f);
-        speed = 4;
+        speed = maxSpeed;
     }
     void HasReachedBorder()
     {
@@ -67,7 +60,6 @@ public class Bucket : MonoBehaviour
     {
         if (bucket.transform.localPosition.x <= drop.localPosition.x + 0.5f && bucket.transform.localPosition.x >= drop.localPosition.x - 0.5f)
         {
-            Debug.Log("has recogido gotas :)");
             success = true;
             Invoke("Completed", 1f);
         }
