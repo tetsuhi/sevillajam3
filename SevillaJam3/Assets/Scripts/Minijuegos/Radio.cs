@@ -18,7 +18,7 @@ public class Radio : MonoBehaviour
 
     private List<int> randomList = new List<int>();
 
-    public static event Action<bool> Success;
+    public static event Action Success;
 
     void OnEnable()
     {
@@ -56,7 +56,7 @@ public class Radio : MonoBehaviour
     {
         if(randomList.Count == 0)
         {
-            Invoke("Completed", 1f);
+            Success.Invoke();
             return;
         }
 
@@ -145,10 +145,5 @@ public class Radio : MonoBehaviour
         Vector2 dir = (mouseScreenPos - pivotScreenPos).normalized;
 
         return dir;
-    }
-
-    void Completed()
-    {
-        Success.Invoke(true);
     }
 }

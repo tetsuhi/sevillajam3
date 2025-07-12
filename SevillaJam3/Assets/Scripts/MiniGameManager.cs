@@ -1,18 +1,17 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System;
 
 public class MiniGameManager : MonoBehaviour
 {
+    public Image AudienceBar;
     public GameObject buttons;
     public Button MGB1;
     public Button MGB2;
     public Button MGB3;
     public Button MGB4;
     public Button MGB5;
-    public Button MGBEx;
     public GameObject scene;
     public GameObject MGUI1;
     public GameObject MG1;
@@ -23,12 +22,24 @@ public class MiniGameManager : MonoBehaviour
     public GameObject MGUI4;
     public GameObject MG4;
     public GameObject MGUI5;
-    public GameObject MG5;   
-    public GameObject MGUIEx;
-    public GameObject MGEx;
+    public GameObject MG5;
 
+    public Button[] eventButtons = new Button[0];
+
+    bool tutorialMinigameBeat;
+    bool minigameActive;
+    bool clickgameActive;
     int lastGame = -1;
 
+    float audience = 0.5f;
+    float audienceGain = 0.03f;
+    float audienceLoss = 0.04f;
+    float audienceMegaLoss = 0.08f;
+
+    public float minTime = 12f;
+    public float maxTime = 17f;
+
+    public static event Action TutorialDone;
     public static event Action<int> BeginMinigame;
     public static event Action EndMinigame;
 
@@ -40,6 +51,7 @@ public class MiniGameManager : MonoBehaviour
         Bucket.Success += Success;
         Map.Success += Success;
     }
+
     private void OnDisable()
     {
         Dynamo.Success -= Success;
@@ -52,11 +64,36 @@ public class MiniGameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(ActivateMiniGame());
+        for (int i = 0; i < eventButtons.Length; i++)
+        {
+            eventButtons[i].interactable = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (minigameActive)
+        {
+            if(tutorialMinigameBeat) audience -= audienceLoss * Time.deltaTime;
+        }
+        else
+        {
+            audience += audienceGain * Time.deltaTime;
+        }
+        if(clickgameActive) audience -= audienceMegaLoss * Time.deltaTime;
+
+        audience = Math.Clamp(audience, 0, 1);
+        AudienceBar.fillAmount = audience;
+
+        AudienceBar.color = Color.Lerp(Color.red, Color.green, audience);
     }
 
     IEnumerator ActivateMiniGame()
     {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 4f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(minTime, maxTime));
+
+        minTime = Math.Max(minTime - 1, 3f);
+        maxTime = Math.Max(maxTime - 1, 4f);
 
         int selectMiniGame = UnityEngine.Random.Range(0, 5);
 
@@ -92,16 +129,13 @@ public class MiniGameManager : MonoBehaviour
             case 4:
                 MGB5.interactable = true;
                 break;
-            default:
-                MGBEx.interactable = true;
-                break;
         }
+
+        minigameActive = true;
     }
 
     public void PlayMiniGame(int selectMiniGame)
     {
-        BeginMinigame.Invoke(selectMiniGame);
-
         scene.SetActive(false);
         buttons.SetActive(false);
 
@@ -127,24 +161,18 @@ public class MiniGameManager : MonoBehaviour
                 MGUI5.SetActive(true);
                 MG5.SetActive(true);
                 break;
-            default:
-                MGUIEx.SetActive(true);
-                MGEx.SetActive(true);
-                break;
         }
     }
 
-    void Success(bool value)
+    void Success()
+    {
+        minigameActive = false;
+        Invoke("RealSuccess", 1f);
+    }
+
+    void RealSuccess()
     {
         StartCoroutine(ActivateMiniGame());
-        EndMinigame.Invoke();
-
-        if (value)
-        {
-        }
-        else
-        {
-        }
 
         scene.SetActive(true);
         buttons.SetActive(true);
@@ -154,7 +182,6 @@ public class MiniGameManager : MonoBehaviour
         MGB3.interactable = false;
         MGB4.interactable = false;
         MGB5.interactable = false;
-        MGBEx.interactable = false;
         MGUI1.SetActive(false);
         MG1.SetActive(false);
         MGUI2.SetActive(false);
@@ -165,7 +192,35 @@ public class MiniGameManager : MonoBehaviour
         MG4.SetActive(false);
         MGUI5.SetActive(false);
         MG5.SetActive(false);
-        MGUIEx.SetActive(false);
-        MGEx.SetActive(false);
+
+        if (!tutorialMinigameBeat)
+        {
+            tutorialMinigameBeat = true;
+            TutorialComplete();
+            TutorialDone.Invoke();
+        }
+    }
+
+    void TutorialComplete()
+    {
+        InvokeRepeating("ActivateEvent", 20f, UnityEngine.Random.Range(30f, 40f));
+    }
+
+    void ActivateEvent()
+    {
+        clickgameActive = true;
+        int randIndex = UnityEngine.Random.Range(0, eventButtons.Length);
+        eventButtons[randIndex].interactable = true;
+        BeginMinigame.Invoke(randIndex);
+    }
+
+    public void DeactivateEvent()
+    {
+        for (int i = 0; i < eventButtons.Length; i++)
+        {
+            eventButtons[i].interactable = false;
+        }
+        clickgameActive = false;
+        EndMinigame.Invoke();
     }
 }

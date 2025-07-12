@@ -16,7 +16,7 @@ public class Fuses : MonoBehaviour
     private bool success2;
     private bool success3;
     private bool success4;
-    public static event Action<bool> Success;
+    public static event Action Success;
 
     private void OnEnable()
     {
@@ -41,17 +41,6 @@ public class Fuses : MonoBehaviour
             sliders[i].value = randomValue;
         }
         
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-
     }
 
     public void CheckSlider1Value()
@@ -99,12 +88,7 @@ public class Fuses : MonoBehaviour
     {
         if (success1 && success2 && success3 && success4)
         {
-            Invoke("Completed", 1f);
+            Success.Invoke();
         }
-    }
-
-    void Completed()
-    {
-        Success.Invoke(true);
     }
 }

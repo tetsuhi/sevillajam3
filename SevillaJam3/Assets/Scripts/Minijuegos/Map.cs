@@ -12,7 +12,7 @@ public class Map : MonoBehaviour
     Collider2D currentItem;
     Vector3 offset;
 
-    public static event Action<bool> Success;
+    public static event Action Success;
 
     private void OnEnable()
     {
@@ -86,11 +86,6 @@ public class Map : MonoBehaviour
             if (!occupied)
                 return;
         }
-        Invoke("Completed", 1f);
-    }
-
-    void Completed()
-    {
-        Success.Invoke(true);
+        Success.Invoke();
     }
 }
