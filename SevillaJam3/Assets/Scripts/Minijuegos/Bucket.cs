@@ -14,7 +14,7 @@ public class Bucket : MonoBehaviour
     private int speed;
 
     private bool success;
-    public static event Action<bool> Success;
+    public static event Action Success;
 
     private void OnEnable()
     {
@@ -61,12 +61,7 @@ public class Bucket : MonoBehaviour
         if (bucket.transform.localPosition.x <= drop.localPosition.x + 0.5f && bucket.transform.localPosition.x >= drop.localPosition.x - 0.5f)
         {
             success = true;
-            Invoke("Completed", 1f);
+            Success.Invoke();
         }
-    }
-
-    void Completed()
-    {
-        Success.Invoke(true);
     }
 }

@@ -1,32 +1,36 @@
+using System;
 using System.Collections;
-using System.Transactions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class TextSystem : MonoBehaviour
 {
     public TextMeshProUGUI textOutput;
     public TextAsset speechFile;
     public string continueText;
-    public string miniGame1;
-    public string miniGame2;
-    public string miniGame3;
-    public string miniGame4;
-    public string miniGame5;
-    public string miniGameEx;
+    public string duckText;
+    public string hairText;
+    public string chairText;
 
     private string[] speechText;
     private int speechIndex;
     private Coroutine textCoroutine;
+    private int tutorialBegin = 7;
+    private int tutorialStop = 11;
+    private int winGameIndex = 45;
+
+    public static event Action TutorialBegin;
+    public static event Action TutorialStop;
 
     private void OnEnable()
     {
+        MiniGameManager.TutorialDone += TutorialDone;
         MiniGameManager.BeginMinigame += BeginMinigame;
         MiniGameManager.EndMinigame += EndMinigame;
     }
     private void OnDisable()
     {
+        MiniGameManager.TutorialDone -= TutorialDone;
         MiniGameManager.BeginMinigame -= BeginMinigame;
         MiniGameManager.EndMinigame -= EndMinigame;
     }
@@ -58,22 +62,13 @@ public class TextSystem : MonoBehaviour
         switch (index)
         {
             case 0:
-                StartCoroutine(MiniGameText(miniGame1));
+                StartCoroutine(MiniGameText(duckText));
                 break;
             case 1:
-                StartCoroutine(MiniGameText(miniGame2));
+                StartCoroutine(MiniGameText(hairText));
                 break;
             case 2:
-                StartCoroutine(MiniGameText(miniGame3));
-                break;
-            case 3:
-                StartCoroutine(MiniGameText(miniGame4));
-                break;
-            case 4:
-                StartCoroutine(MiniGameText(miniGame5));
-                break;
-            default:
-                StartCoroutine(MiniGameText(miniGameEx));
+                StartCoroutine(MiniGameText(chairText));
                 break;
         }
     }
@@ -83,34 +78,75 @@ public class TextSystem : MonoBehaviour
         StartCoroutine(ResumeSpeech());
     }
 
+    void TutorialDone()
+    {
+        if(textCoroutine != null)
+        {
+            StopCoroutine(textCoroutine);
+            textCoroutine = null;
+        }
+        textCoroutine = StartCoroutine(WriteSpeechLine());
+    }
+
     IEnumerator WriteSpeechLine()
     {
-        if (speechText.Length <= speechIndex)
+        if (winGameIndex <= speechIndex)
         {
             Debug.Log("Has ganado");
         }
         else
         {
             string line = speechText[speechIndex];
-            float duration = 1f;
+            float duration = 0.5f;
             float delayPerChar = line.Length > 0 ? duration / line.Length : 0f;
 
-            for (int i = 0; i < line.Length + 1; i++)
+            string visibleText = "";
+            int i = 0;
+
+            while (i < line.Length)
             {
-                textOutput.text = line.Substring(0, i);
+                if (line[i] == '<')
+                {
+                    int tagEnd = line.IndexOf('>', i);
+                    if (tagEnd != -1)
+                    {
+                        string tag = line.Substring(i, tagEnd - i + 1);
+                        visibleText += tag;
+                        i = tagEnd + 1;
+                        continue;
+                    }
+                }
+
+                visibleText += line[i];
+                textOutput.text = visibleText;
+
+                i++;
                 yield return new WaitForSeconds(delayPerChar);
             }
 
-            yield return new WaitForSeconds(2f);
+            if (tutorialBegin - 1 == speechIndex)
+            {
+                TutorialBegin.Invoke();
+            }
+            if (tutorialStop - 1 == speechIndex)
+            {
+                TutorialStop.Invoke();
+            }
+
+            yield return new WaitForSeconds(3.5f);
 
             speechIndex++;
-            textCoroutine = StartCoroutine(WriteSpeechLine());
+
+            if (tutorialStop != speechIndex)
+            {
+                textCoroutine = StartCoroutine(WriteSpeechLine());
+            }
         }
     }
 
     IEnumerator ResumeSpeech()
     {
-        float duration = 1f;
+        float duration = 0.2f;
         float delayPerChar = continueText.Length > 0 ? duration / continueText.Length : 0f;
 
         for (int i = 0; i < continueText.Length + 1; i++)
@@ -119,14 +155,19 @@ public class TextSystem : MonoBehaviour
             yield return new WaitForSeconds(delayPerChar);
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
+        if (textCoroutine != null)
+        {
+            StopCoroutine(textCoroutine);
+            textCoroutine = null;
+        }
         textCoroutine = StartCoroutine(WriteSpeechLine());
     }
 
     IEnumerator MiniGameText(string text)
     {
-        float duration = 0.2f;
+        float duration = 0.3f;
         float delayPerChar = text.Length > 0 ? duration / text.Length : 0f;
 
         for (int i = 0; i < text.Length + 1; i++)

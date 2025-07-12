@@ -12,14 +12,14 @@ public class Dynamo : MonoBehaviour
     public Image fillImage;
 
     private float completion = 0f;
-    private float dischargeRate = 0.3f;
-    private float chargeRate = 0.2f;
+    private float dischargeRate = 0.25f;
+    private float chargeRate = 0.25f;
 
     private bool isDragging = false;
     private Vector2 lastDirection;
 
     private bool succes;
-    public static event Action<bool> Success;
+    public static event Action Success;
 
     private void OnEnable()
     {
@@ -77,7 +77,7 @@ public class Dynamo : MonoBehaviour
             {
                 succes = true;
                 isDragging = false;
-                Invoke("Completed", 1f);
+                Success.Invoke();
             }
         }
     }
@@ -111,10 +111,5 @@ public class Dynamo : MonoBehaviour
         {
             fillImage.color = Color.Lerp(Color.yellow, Color.green, (completion - 0.5f) / 0.5f);
         }
-    }
-
-    void Completed()
-    {
-        Success.Invoke(true);
     }
 }
