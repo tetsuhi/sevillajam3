@@ -1,8 +1,7 @@
+using System;
 using System.Collections;
-using System.Transactions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class TextSystem : MonoBehaviour
 {
@@ -16,8 +15,12 @@ public class TextSystem : MonoBehaviour
     private string[] speechText;
     private int speechIndex;
     private Coroutine textCoroutine;
+    private int tutorialBegin = 7;
     private int tutorialStop = 11;
-    private int winGameIndex = 29;
+    private int winGameIndex = 45;
+
+    public static event Action TutorialBegin;
+    public static event Action TutorialStop;
 
     private void OnEnable()
     {
@@ -121,12 +124,23 @@ public class TextSystem : MonoBehaviour
                 yield return new WaitForSeconds(delayPerChar);
             }
 
+            if (tutorialBegin - 1 == speechIndex)
+            {
+                TutorialBegin.Invoke();
+            }
+            if (tutorialStop - 1 == speechIndex)
+            {
+                TutorialStop.Invoke();
+            }
+
             yield return new WaitForSeconds(3.5f);
 
             speechIndex++;
 
-            if(tutorialStop != speechIndex)
-            textCoroutine = StartCoroutine(WriteSpeechLine());
+            if (tutorialStop != speechIndex)
+            {
+                textCoroutine = StartCoroutine(WriteSpeechLine());
+            }
         }
     }
 

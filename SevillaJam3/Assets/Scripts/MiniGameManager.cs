@@ -26,6 +26,7 @@ public class MiniGameManager : MonoBehaviour
 
     public Button[] eventButtons = new Button[0];
 
+    bool begin;
     bool tutorialMinigameBeat;
     bool minigameActive;
     bool clickgameActive;
@@ -36,8 +37,8 @@ public class MiniGameManager : MonoBehaviour
     float audienceLoss = 0.04f;
     float audienceMegaLoss = 0.08f;
 
-    public float minTime = 12f;
-    public float maxTime = 17f;
+    public float minTime = 11f;
+    public float maxTime = 15f;
 
     public static event Action TutorialDone;
     public static event Action<int> BeginMinigame;
@@ -50,6 +51,8 @@ public class MiniGameManager : MonoBehaviour
         Radio.Success += Success;
         Bucket.Success += Success;
         Map.Success += Success;
+        TextSystem.TutorialBegin += ShowFirstMiniGame;
+        TextSystem.TutorialStop += BeginTutorial;
     }
 
     private void OnDisable()
@@ -59,15 +62,27 @@ public class MiniGameManager : MonoBehaviour
         Radio.Success -= Success;
         Bucket.Success -= Success;
         Map.Success -= Success;
+        TextSystem.TutorialBegin -= ShowFirstMiniGame;
+        TextSystem.TutorialStop -= BeginTutorial;
     }
 
     private void Start()
     {
-        StartCoroutine(ActivateMiniGame());
         for (int i = 0; i < eventButtons.Length; i++)
         {
             eventButtons[i].interactable = false;
         }
+
+        Image img = MGB1.GetComponent<Image>();
+        Color c = img.color;
+        c.a = 50f / 255f;
+        img.color = c;
+
+        MGB1.GetComponent<Image>().color = c;
+        MGB2.GetComponent<Image>().color = c;
+        MGB3.GetComponent<Image>().color = c;
+        MGB4.GetComponent<Image>().color = c;
+        MGB5.GetComponent<Image>().color = c;
     }
 
     private void Update()
@@ -92,8 +107,8 @@ public class MiniGameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(UnityEngine.Random.Range(minTime, maxTime));
 
-        minTime = Math.Max(minTime - 1, 3f);
-        maxTime = Math.Max(maxTime - 1, 4f);
+        minTime = Math.Max(minTime - 1, 2f);
+        maxTime = Math.Max(maxTime - 1, 5f);
 
         int selectMiniGame = UnityEngine.Random.Range(0, 5);
 
@@ -136,6 +151,8 @@ public class MiniGameManager : MonoBehaviour
 
     public void PlayMiniGame(int selectMiniGame)
     {
+        if (!begin) return;
+
         scene.SetActive(false);
         buttons.SetActive(false);
 
@@ -162,6 +179,12 @@ public class MiniGameManager : MonoBehaviour
                 MG5.SetActive(true);
                 break;
         }
+
+        MGB1.interactable = false;
+        MGB2.interactable = false;
+        MGB3.interactable = false;
+        MGB4.interactable = false;
+        MGB5.interactable = false;
     }
 
     void Success()
@@ -177,11 +200,6 @@ public class MiniGameManager : MonoBehaviour
         scene.SetActive(true);
         buttons.SetActive(true);
 
-        MGB1.interactable = false;
-        MGB2.interactable = false;
-        MGB3.interactable = false;
-        MGB4.interactable = false;
-        MGB5.interactable = false;
         MGUI1.SetActive(false);
         MG1.SetActive(false);
         MGUI2.SetActive(false);
@@ -199,6 +217,27 @@ public class MiniGameManager : MonoBehaviour
             TutorialComplete();
             TutorialDone.Invoke();
         }
+    }
+
+    void ShowFirstMiniGame()
+    {
+        EnableMiniGameSelection(0);
+    }
+
+    void BeginTutorial()
+    {
+        begin = true;
+
+        Image img = MGB1.GetComponent<Image>();
+        Color c = img.color;
+        c.a = 1;
+        img.color = c;
+
+        MGB1.GetComponent<Image>().color = c;
+        MGB2.GetComponent<Image>().color = c;
+        MGB3.GetComponent<Image>().color = c;
+        MGB4.GetComponent<Image>().color = c;
+        MGB5.GetComponent<Image>().color = c;
     }
 
     void TutorialComplete()
