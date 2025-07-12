@@ -5,7 +5,7 @@ public class Timer : MonoBehaviour
 {
     public int seconds = 0;
     public int minutes = 0;
-    public TextMeshPro timerText;
+    public TextMeshProUGUI timerText;
 
     void Start()
     {
