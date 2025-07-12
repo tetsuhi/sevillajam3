@@ -36,12 +36,14 @@ public class MiniGameManager : MonoBehaviour
     {
         Dynamo.Success += Success;
         Fuses.Success += Success;
+        Radio.Success += Success;
         Bucket.Success += Success;
     }
     private void OnDisable()
     {
         Dynamo.Success -= Success;
         Fuses.Success -= Success;
+        Radio.Success -= Success;
         Bucket.Success -= Success;
     }
 
