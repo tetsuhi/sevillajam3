@@ -12,6 +12,9 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip click;
     public AudioClip activarMinijuego;
+    public AudioClip pato;
+    public AudioClip generador;
+    public AudioClip rafagaViento;
 
     private void Awake()
     {
@@ -66,5 +69,17 @@ public class AudioManager : MonoBehaviour
     public void PlayActivarMinijuego()
     {
         mAudioSource.PlayOneShot(activarMinijuego);
+    }
+    public void PlayPato()
+    {
+        mAudioSource.PlayOneShot(pato);
+    }
+    public void PlayGenerador()
+    {
+        mAudioSource.PlayOneShot(generador);
+    }
+    public void PlayRafagaViento()
+    {
+        mAudioSource.PlayOneShot(rafagaViento);
     }
 }

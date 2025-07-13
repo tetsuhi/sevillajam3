@@ -49,6 +49,9 @@ MonoBehaviour:
   soundMixer: {fileID: 24100000, guid: db23668ff0f85354d9937d8b8d599bda, type: 2}
   click: {fileID: 8300000, guid: 9f0cf43e5ca671345b13757e22f60635, type: 3}
   activarMinijuego: {fileID: 8300000, guid: 934ef583cbbde54449f0d98341c78e2e, type: 3}
+  pato: {fileID: 8300000, guid: 1f7c2b3e95d80dc4dbf6911fe5fe205c, type: 3}
+  generador: {fileID: 8300000, guid: fa690eb17f0013c4983bc6173af5f37e, type: 3}
+  rafagaViento: {fileID: 8300000, guid: da14f55071789e5449ca336e03352cef, type: 3}
 --- !u!82 &838197089335838674
 AudioSource:
   m_ObjectHideFlags: 0
