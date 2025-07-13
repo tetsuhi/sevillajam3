@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource mAudioSource;
 
     public AudioClip click;
+    public AudioClip activarMinijuego;
 
     private void Awake()
     {
@@ -60,5 +61,10 @@ public class AudioManager : MonoBehaviour
     public void PlayClick()
     {
         mAudioSource.PlayOneShot(click);
+    }    
+    
+    public void PlayActivarMinijuego()
+    {
+        mAudioSource.PlayOneShot(activarMinijuego);
     }
 }

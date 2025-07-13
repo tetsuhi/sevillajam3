@@ -125,7 +125,9 @@ public class MiniGameManager : MonoBehaviour
 
     private void EnableMiniGameSelection(int selectMiniGame)
     {
-        switch(selectMiniGame)
+        AudioManager.instance.PlayActivarMinijuego();
+
+        switch (selectMiniGame)
         {
             case 0:
                 MGB1.interactable = true;
