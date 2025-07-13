@@ -5,7 +5,8 @@ using System;
 
 public class MiniGameManager : MonoBehaviour
 {
-    public Image AudienceBar;
+    public Image audienceBar;
+    public Image audienceIcon;
     public GameObject buttons;
     public Button MGB1;
     public Button MGB2;
@@ -29,19 +30,24 @@ public class MiniGameManager : MonoBehaviour
     public GameObject duckForecaster;
     public GameObject fallForecaster;
 
+    public Sprite[] audienceIcons;
+
     bool begin;
     bool tutorialMinigameBeat;
     bool minigameActive;
     bool clickgameActive;
     int lastGame = -1;
+    int randIndex;
 
     float audience = 0.5f;
     float audienceGain = 0.03f;
     float audienceLoss = 0.05f;
-    float audienceMegaLoss = 0.8f;
+    float audienceMegaLoss = 0.08f;
 
     private float minTime = 10f;
     private float maxTime = 14f;
+
+    private Coroutine duckSound;
 
     public static event Action TutorialDone;
     public static event Action<int> BeginMinigame;
@@ -95,10 +101,15 @@ public class MiniGameManager : MonoBehaviour
         }
         if(clickgameActive) audience -= audienceMegaLoss * Time.deltaTime;
 
-        audience = Math.Clamp(audience, 0, 1);
-        AudienceBar.fillAmount = audience;
+        audience = Mathf.Clamp01(audience);
+        audienceBar.fillAmount = audience;
 
-        AudienceBar.color = Color.Lerp(Color.red, Color.green, audience);
+        audienceBar.color = Color.Lerp(Color.red, Color.green, audience);
+
+        int index = Mathf.FloorToInt(audience * audienceIcons.Length);
+        if (index >= audienceIcons.Length) index = audienceIcons.Length - 1;
+
+        audienceIcon.sprite = audienceIcons[index];
     }
 
     IEnumerator ActivateMiniGame()
@@ -248,16 +259,20 @@ public class MiniGameManager : MonoBehaviour
     void ActivateEvent()
     {
         clickgameActive = true;
-        int randIndex = UnityEngine.Random.Range(0, 2);
+        randIndex = UnityEngine.Random.Range(0, 2);
         BeginMinigame.Invoke(randIndex);
 
         defaultForecaster.SetActive(false);
         switch (randIndex)
         {
             case 0:
-                duckForecaster.SetActive(true); break;
+                duckForecaster.SetActive(true);
+                duckSound = StartCoroutine(DuckSound());
+                break;
             case 1:
-                baldForecaster.SetActive(true); break;
+                baldForecaster.SetActive(true);
+                AudioManager.instance.PlayRafagaViento();
+                break;
             case 2:
                 fallForecaster.SetActive(true); break;
         }
@@ -272,5 +287,18 @@ public class MiniGameManager : MonoBehaviour
         duckForecaster.SetActive(false);
         baldForecaster.SetActive(false);
         fallForecaster.SetActive(false);
+
+        if(duckSound != null)
+        {
+            StopCoroutine(duckSound);
+            duckSound = null;
+        }
+    }
+
+    IEnumerator DuckSound()
+    {
+        AudioManager.instance.PlayPato();
+        yield return new WaitForSeconds(2f);
+        duckSound = StartCoroutine(DuckSound());
     }
 }

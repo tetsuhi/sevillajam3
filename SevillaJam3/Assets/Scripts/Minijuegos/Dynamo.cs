@@ -12,7 +12,7 @@ public class Dynamo : MonoBehaviour
     public Image fillImage;
 
     private float completion = 0f;
-    private float dischargeRate = 0.25f;
+    private float dischargeRate = 0.3f;
     private float chargeRate = 0.25f;
 
     private bool isDragging = false;

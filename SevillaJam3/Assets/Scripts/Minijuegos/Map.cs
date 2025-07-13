@@ -7,7 +7,7 @@ public class Map : MonoBehaviour
     public Collider2D[] colliders;
 
     private bool[] slotUsed;
-    private float snapThreshold = 0.3f;
+    private float snapThreshold = 0.4f;
 
     Collider2D currentItem;
     Vector3 offset;
