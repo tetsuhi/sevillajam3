@@ -24,7 +24,10 @@ public class MiniGameManager : MonoBehaviour
     public GameObject MGUI5;
     public GameObject MG5;
 
-    public Button[] eventButtons = new Button[0];
+    public GameObject defaultForecaster;
+    public GameObject baldForecaster;
+    public GameObject duckForecaster;
+    public GameObject fallForecaster;
 
     bool begin;
     bool tutorialMinigameBeat;
@@ -34,11 +37,11 @@ public class MiniGameManager : MonoBehaviour
 
     float audience = 0.5f;
     float audienceGain = 0.03f;
-    float audienceLoss = 0.04f;
-    float audienceMegaLoss = 0.08f;
+    float audienceLoss = 0.05f;
+    float audienceMegaLoss = 0.8f;
 
-    public float minTime = 11f;
-    public float maxTime = 15f;
+    private float minTime = 10f;
+    private float maxTime = 14f;
 
     public static event Action TutorialDone;
     public static event Action<int> BeginMinigame;
@@ -68,11 +71,6 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < eventButtons.Length; i++)
-        {
-            eventButtons[i].interactable = false;
-        }
-
         Image img = MGB1.GetComponent<Image>();
         Color c = img.color;
         c.a = 50f / 255f;
@@ -108,7 +106,7 @@ public class MiniGameManager : MonoBehaviour
         yield return new WaitForSeconds(UnityEngine.Random.Range(minTime, maxTime));
 
         minTime = Math.Max(minTime - 1, 2f);
-        maxTime = Math.Max(maxTime - 1, 5f);
+        maxTime = Math.Max(maxTime - 1, 4f);
 
         int selectMiniGame = UnityEngine.Random.Range(0, 5);
 
@@ -248,18 +246,29 @@ public class MiniGameManager : MonoBehaviour
     void ActivateEvent()
     {
         clickgameActive = true;
-        int randIndex = UnityEngine.Random.Range(0, eventButtons.Length);
-        eventButtons[randIndex].interactable = true;
+        int randIndex = UnityEngine.Random.Range(0, 2);
         BeginMinigame.Invoke(randIndex);
+
+        defaultForecaster.SetActive(false);
+        switch (randIndex)
+        {
+            case 0:
+                duckForecaster.SetActive(true); break;
+            case 1:
+                baldForecaster.SetActive(true); break;
+            case 2:
+                fallForecaster.SetActive(true); break;
+        }
     }
 
     public void DeactivateEvent()
     {
-        for (int i = 0; i < eventButtons.Length; i++)
-        {
-            eventButtons[i].interactable = false;
-        }
         clickgameActive = false;
         EndMinigame.Invoke();
+
+        defaultForecaster.SetActive(true);
+        duckForecaster.SetActive(false);
+        baldForecaster.SetActive(false);
+        fallForecaster.SetActive(false);
     }
 }

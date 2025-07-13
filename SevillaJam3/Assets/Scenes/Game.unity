@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &169728817
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2196,18 +2196,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 439890606}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 927721296}
-  m_Father: {fileID: 1657714441}
+  m_Father: {fileID: 1852953146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -23, y: 11}
-  m_SizeDelta: {x: 160, y: 128.2935}
+  m_AnchoredPosition: {x: -11.500107, y: -54.00003}
+  m_SizeDelta: {x: 300, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439890608
 MonoBehaviour:
@@ -2248,7 +2248,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 439890609}
   m_OnClick:
     m_PersistentCalls:
@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2525,7 +2525,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1538416104}
   m_Father: {fileID: 169728817}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2553,7 +2554,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4dd827a97cbbcdb43be49531c3b2bb2b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 58a5a5d6ccf36f045828e5fb2cb6aceb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3739,7 +3740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &866887746
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3981,7 +3982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &927721296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4885,7 +4886,6 @@ RectTransform:
   m_Children:
   - {fileID: 1651478491}
   - {fileID: 1509867039}
-  - {fileID: 1657714441}
   m_Father: {fileID: 872419168}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5587,7 +5587,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 1759334873}
   m_Father: {fileID: 1042265218}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -6208,7 +6209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1271413306
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6724,7 +6725,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1419353398
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7569,18 +7570,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538416103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1271413306}
-  m_Father: {fileID: 1657714441}
+  m_Father: {fileID: 589908048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234.2662, y: -208.05461}
-  m_SizeDelta: {x: 160, y: 128.2935}
+  m_AnchoredPosition: {x: 0, y: 200}
+  m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1538416105
 MonoBehaviour:
@@ -7621,7 +7622,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1538416106}
   m_OnClick:
     m_PersistentCalls:
@@ -7651,7 +7652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -8407,44 +8408,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1654316361}
   m_CullTransparentMesh: 1
---- !u!1 &1657714440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1657714441}
-  m_Layer: 5
-  m_Name: PointAndClickUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1657714441
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1657714440}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1759334873}
-  - {fileID: 1538416104}
-  - {fileID: 439890607}
-  m_Father: {fileID: 1043185366}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -948.5001, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1669311609
 GameObject:
   m_ObjectHideFlags: 0
@@ -9102,18 +9065,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759334872}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 866887746}
-  m_Father: {fileID: 1657714441}
+  m_Father: {fileID: 1183043813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -34, y: 307}
-  m_SizeDelta: {x: 160, y: 128.2935}
+  m_AnchoredPosition: {x: -133, y: 501.05}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1759334874
 MonoBehaviour:
@@ -9154,7 +9117,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1759334875}
   m_OnClick:
     m_PersistentCalls:
@@ -9184,7 +9147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9556,10 +9519,11 @@ MonoBehaviour:
   textOutput: {fileID: 2030365390}
   speechFile: {fileID: 4900000, guid: db9b8d1167dc40348b189eaf0fcb3d1f, type: 3}
   continueText: Como iba diciendo....
-  duckText: "<size=40>\xA1Oye, que alguien quite a ese <size=70><color=#FFD700>PATO</color></size>
+  duckText: "<size=40>\xA1Oye, que alguien quite a ese <size=65><color=#FFD700>PATO</color></size>
     de ah\xED! \xA1Me est\xE1 robando el protagonismo! "
-  hairText: 'Em, parece que se me ha <color=red>despeinado<size=20> un poco el flequillo</size>... '
-  chairText: "<Size=120>\xA1\xA1AAARGH!!"
+  hairText: "<size=40>Em, parece que se me ha despeinado un poco el flequillo...
+    <Size=65><color=#FFD700>\xA1\xA1Estilista!!"
+  chairText: "<Size=65>\xA1\xA1AAARGH!! <color=#FFD700>\xA1\xA1LEVANTAME!!"
 --- !u!114 &1805882000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9590,12 +9554,10 @@ MonoBehaviour:
   MG4: {fileID: 652578184}
   MGUI5: {fileID: 1613912172}
   MG5: {fileID: 1225898318}
-  eventButtons:
-  - {fileID: 1538416105}
-  - {fileID: 1759334874}
-  - {fileID: 439890608}
-  minTime: 12
-  maxTime: 17
+  defaultForecaster: {fileID: 1419353397}
+  baldForecaster: {fileID: 1042265217}
+  duckForecaster: {fileID: 169728816}
+  fallForecaster: {fileID: 1852953145}
 --- !u!1 &1808599912
 GameObject:
   m_ObjectHideFlags: 0
@@ -9879,6 +9841,7 @@ RectTransform:
   m_Children:
   - {fileID: 1989777899}
   - {fileID: 1808599913}
+  - {fileID: 439890607}
   m_Father: {fileID: 161115199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
