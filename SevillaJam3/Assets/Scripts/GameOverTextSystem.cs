@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameOverTextSystem : MonoBehaviour
 {
@@ -15,13 +16,33 @@ public class GameOverTextSystem : MonoBehaviour
     public GameObject gameOverText;
     bool nextText;
 
+    public GameObject badEndingImage;
+    public GameObject goodEndingImage;
+    public GameObject gameOverImage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        badEndingImage.SetActive(false);
+        goodEndingImage.SetActive(false);
+        gameOverImage.SetActive(false);
         gameOverText.SetActive(false);
+
         if(selectedTextIndex != -1)
         {
             endingTextLine = endings[selectedTextIndex].text.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            switch (selectedTextIndex)
+            {
+                case 0:
+                    badEndingImage.SetActive(true);
+                    break;
+                case 1:
+                    goodEndingImage.SetActive(true);
+                    break;
+                case 2:
+                    gameOverImage.SetActive(true);
+                    break;
+            }
         }
         StartCoroutine(WriteGameOverLine());
     }
