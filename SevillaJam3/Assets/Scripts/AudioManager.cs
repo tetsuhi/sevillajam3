@@ -68,42 +68,52 @@ public class AudioManager : MonoBehaviour
 
     public void PlayClick()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(click);
     }    
     public void PlayActivarMinijuego()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(activarMinijuego);
     }
     public void PlayEmpezarMinijuego()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(empezarMinijuego);
     }
     public void PlayPato()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(pato);
     }
     public void PlayGenerador()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(generador);
     }
     public void PlayRafagaViento()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(rafagaViento);
     }
     public void PlayColocarCosaBien()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(colocarCosaBien);
     }
     public void PlayCaida()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(caida);
     }
     public void PlayColocarCosaMal()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(colocarCosaMal);
     }
     public void PlayCosaBien()
     {
+        mAudioSource.pitch = Random.Range(0.8f, 1.2f);
         mAudioSource.PlayOneShot(cosaBien);
     }
 }
