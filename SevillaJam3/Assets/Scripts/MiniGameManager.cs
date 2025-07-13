@@ -287,7 +287,9 @@ public class MiniGameManager : MonoBehaviour
                 AudioManager.instance.PlayRafagaViento();
                 break;
             case 2:
-                fallForecaster.SetActive(true); break;
+                fallForecaster.SetActive(true);
+                AudioManager.instance.PlayCaida();
+                break;
         }
     }
 

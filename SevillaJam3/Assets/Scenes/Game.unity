@@ -1830,7 +1830,7 @@ MonoBehaviour:
   lever: {fileID: 139994790}
   energyBar: {fileID: 51576149}
   fillImage: {fileID: 1897891478}
-  audioDynamo: {fileID: 0}
+  audioDynamo: {fileID: 1436255892}
 --- !u!4 &291075368
 Transform:
   m_ObjectHideFlags: 0
@@ -2297,7 +2297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
