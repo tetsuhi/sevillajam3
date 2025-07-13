@@ -58,7 +58,7 @@ public class Bucket : MonoBehaviour
 
     void CheckCompletion()
     {
-        if (bucket.transform.localPosition.x <= drop.localPosition.x + 0.5f && bucket.transform.localPosition.x >= drop.localPosition.x - 0.5f)
+        if (bucket.transform.localPosition.x <= drop.localPosition.x + 0.7f && bucket.transform.localPosition.x >= drop.localPosition.x - 0.7f)
         {
             success = true;
             Success.Invoke();

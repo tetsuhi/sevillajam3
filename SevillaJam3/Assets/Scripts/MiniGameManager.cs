@@ -41,9 +41,9 @@ public class MiniGameManager : MonoBehaviour
     int randIndex;
 
     float audience = 0.5f;
-    float audienceGain = 0.03f;
+    float audienceGain = 0.04f;
     float audienceLoss = 0.05f;
-    float audienceMegaLoss = 0.08f;
+    float audienceMegaLoss = 0.05f;
 
     private float minTime = 10f;
     private float maxTime = 14f;
@@ -272,7 +272,7 @@ public class MiniGameManager : MonoBehaviour
     void ActivateEvent()
     {
         clickgameActive = true;
-        randIndex = UnityEngine.Random.Range(0, 2);
+        randIndex = UnityEngine.Random.Range(0, 3);
         BeginMinigame.Invoke(randIndex);
 
         defaultForecaster.SetActive(false);

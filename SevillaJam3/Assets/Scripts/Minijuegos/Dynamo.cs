@@ -11,6 +11,8 @@ public class Dynamo : MonoBehaviour
     public Slider energyBar;
     public Image fillImage;
 
+    public GameObject audioDynamo;
+
     private float completion = 0f;
     private float dischargeRate = 0.3f;
     private float chargeRate = 0.25f;
@@ -36,6 +38,7 @@ public class Dynamo : MonoBehaviour
             EnergyBar();
             UpdateBarColor();
         }
+        audioDynamo.SetActive(isDragging);
     }
 
     void HandleInput()
