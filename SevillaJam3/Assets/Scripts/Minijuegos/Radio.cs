@@ -34,7 +34,7 @@ public class Radio : MonoBehaviour
         canGrabWheel = false;
 
         randomList = GenerateRandomList();
-        ActiveItem();
+        ActiveItem(false);
     }
 
     private List<int> GenerateRandomList()
@@ -52,13 +52,15 @@ public class Radio : MonoBehaviour
         return numbers;
     }
 
-    private void ActiveItem()
+    private void ActiveItem(bool playSound = true)
     {
-        if(randomList.Count == 0)
+        if (randomList.Count == 0)
         {
             Success.Invoke();
             return;
         }
+
+        if (playSound) AudioManager.instance.PlayColocarCosaBien();
 
         int item = randomList[0];
         randomList.RemoveAt(0);

@@ -90,5 +90,9 @@ public class Fuses : MonoBehaviour
         {
             Success.Invoke();
         }
+        else
+        {
+            AudioManager.instance.PlayColocarCosaBien();
+        }
     }
 }

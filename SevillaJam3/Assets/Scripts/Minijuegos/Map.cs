@@ -23,7 +23,6 @@ public class Map : MonoBehaviour
         foreach (Collider2D c in colliders)
         {
             c.enabled = true;
-            c.GetComponent<SpriteRenderer>().color = Color.red;
             Vector3 pos = c.transform.localPosition;
             pos.y = -3.5f;
             c.transform.localPosition = pos;
@@ -69,7 +68,6 @@ public class Map : MonoBehaviour
                 {
                     currentItem.transform.position = hangPositions[i].position;
                     currentItem.enabled = false;
-                    currentItem.GetComponent<SpriteRenderer>().color = Color.green;
                     slotUsed[i] = true;
                     currentItem = null;
                     AllSlotsUsed();
@@ -84,7 +82,10 @@ public class Map : MonoBehaviour
         foreach (bool occupied in slotUsed)
         {
             if (!occupied)
+            {
+                AudioManager.instance.PlayColocarCosaBien();
                 return;
+            }
         }
         Success.Invoke();
     }

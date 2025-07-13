@@ -10,7 +10,6 @@ public class GameOverTextSystem : MonoBehaviour
 {
     public TextAsset[] endings = new TextAsset[0];
     public string[] endingTextLine;
-    public int selectedTextIndex = -1;
     private int speechIndex = 0;
     public TextMeshProUGUI textOutput;
     public GameObject gameOverText;
@@ -20,7 +19,6 @@ public class GameOverTextSystem : MonoBehaviour
     public GameObject goodEndingImage;
     public GameObject gameOverImage;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         badEndingImage.SetActive(false);
@@ -28,10 +26,10 @@ public class GameOverTextSystem : MonoBehaviour
         gameOverImage.SetActive(false);
         gameOverText.SetActive(false);
 
-        if(selectedTextIndex != -1)
+        if(GameOverScene.GameOverIndex != -1)
         {
-            endingTextLine = endings[selectedTextIndex].text.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
-            switch (selectedTextIndex)
+            endingTextLine = endings[GameOverScene.GameOverIndex].text.Split(new[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+            switch (GameOverScene.GameOverIndex)
             {
                 case 0:
                     badEndingImage.SetActive(true);

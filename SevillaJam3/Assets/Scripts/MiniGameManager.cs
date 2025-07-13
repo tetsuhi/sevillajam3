@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
@@ -62,6 +63,7 @@ public class MiniGameManager : MonoBehaviour
         Map.Success += Success;
         TextSystem.TutorialBegin += ShowFirstMiniGame;
         TextSystem.TutorialStop += BeginTutorial;
+        TextSystem.GameOver += GameOver;
     }
 
     private void OnDisable()
@@ -73,6 +75,7 @@ public class MiniGameManager : MonoBehaviour
         Map.Success -= Success;
         TextSystem.TutorialBegin -= ShowFirstMiniGame;
         TextSystem.TutorialStop -= BeginTutorial;
+        TextSystem.GameOver -= GameOver;
     }
 
     private void Start()
@@ -110,6 +113,12 @@ public class MiniGameManager : MonoBehaviour
         if (index >= audienceIcons.Length) index = audienceIcons.Length - 1;
 
         audienceIcon.sprite = audienceIcons[index];
+
+        if(audience == 0)
+        {
+            GameOverScene.GameOverIndex = 2;
+            SceneManager.LoadScene(2);
+        }
     }
 
     IEnumerator ActivateMiniGame()
@@ -164,6 +173,8 @@ public class MiniGameManager : MonoBehaviour
     {
         if (!begin) return;
 
+        AudioManager.instance.PlayEmpezarMinijuego();
+
         scene.SetActive(false);
         buttons.SetActive(false);
 
@@ -200,6 +211,8 @@ public class MiniGameManager : MonoBehaviour
 
     void Success()
     {
+        AudioManager.instance.PlayCosaBien();
+
         minigameActive = false;
         Invoke("RealSuccess", 1f);
     }
@@ -280,6 +293,8 @@ public class MiniGameManager : MonoBehaviour
 
     public void DeactivateEvent()
     {
+        AudioManager.instance.PlayCosaBien();
+
         clickgameActive = false;
         EndMinigame.Invoke();
 
@@ -300,5 +315,19 @@ public class MiniGameManager : MonoBehaviour
         AudioManager.instance.PlayPato();
         yield return new WaitForSeconds(2f);
         duckSound = StartCoroutine(DuckSound());
+    }
+
+    void GameOver()
+    {
+        if (audience < 0.5f)
+        {
+            GameOverScene.GameOverIndex = 0;
+            SceneManager.LoadScene(2);
+        }
+        else
+        {
+            GameOverScene.GameOverIndex = 1;
+            SceneManager.LoadScene(2);
+        }
     }
 }

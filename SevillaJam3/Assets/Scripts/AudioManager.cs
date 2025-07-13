@@ -12,9 +12,14 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip click;
     public AudioClip activarMinijuego;
+    public AudioClip empezarMinijuego;
     public AudioClip pato;
-    public AudioClip generador;
     public AudioClip rafagaViento;
+    public AudioClip caida;
+    public AudioClip colocarCosaBien;
+    public AudioClip colocarCosaMal;
+    public AudioClip generador;
+    public AudioClip cosaBien;
 
     private void Awake()
     {
@@ -65,10 +70,13 @@ public class AudioManager : MonoBehaviour
     {
         mAudioSource.PlayOneShot(click);
     }    
-    
     public void PlayActivarMinijuego()
     {
         mAudioSource.PlayOneShot(activarMinijuego);
+    }
+    public void PlayEmpezarMinijuego()
+    {
+        mAudioSource.PlayOneShot(empezarMinijuego);
     }
     public void PlayPato()
     {
@@ -81,5 +89,21 @@ public class AudioManager : MonoBehaviour
     public void PlayRafagaViento()
     {
         mAudioSource.PlayOneShot(rafagaViento);
+    }
+    public void PlayColocarCosaBien()
+    {
+        mAudioSource.PlayOneShot(colocarCosaBien);
+    }
+    public void PlayCaida()
+    {
+        mAudioSource.PlayOneShot(caida);
+    }
+    public void PlayColocarCosaMal()
+    {
+        mAudioSource.PlayOneShot(colocarCosaMal);
+    }
+    public void PlayCosaBien()
+    {
+        mAudioSource.PlayOneShot(cosaBien);
     }
 }

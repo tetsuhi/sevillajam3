@@ -63,5 +63,9 @@ public class Bucket : MonoBehaviour
             success = true;
             Success.Invoke();
         }
+        else
+        {
+            AudioManager.instance.PlayColocarCosaMal();
+        }
     }
 }

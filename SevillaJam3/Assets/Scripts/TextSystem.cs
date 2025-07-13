@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TextSystem : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class TextSystem : MonoBehaviour
 
     public static event Action TutorialBegin;
     public static event Action TutorialStop;
+    public static event Action GameOver;
 
     private void OnEnable()
     {
@@ -92,7 +94,7 @@ public class TextSystem : MonoBehaviour
     {
         if (winGameIndex <= speechIndex)
         {
-            Debug.Log("Has ganado");
+            GameOver.Invoke();
         }
         else
         {
