@@ -527,7 +527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 39.31742}
+  m_AnchoredPosition: {x: 0, y: -307.98636}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &595299079
@@ -761,7 +761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 39f7c9586f500b04ba59abfea67613e7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2176,7 +2176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.754269, y: -221.68083}
+  m_AnchoredPosition: {x: 23.754269, y: -100.45218}
   m_SizeDelta: {x: 295.9727, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1621859740
@@ -2866,7 +2866,6 @@ MonoBehaviour:
   - {fileID: 4900000, guid: c0c929e942b44904a9172b7407233634, type: 3}
   - {fileID: 4900000, guid: d2af6d064e508e941a713bbd2cd787e6, type: 3}
   endingTextLine: []
-  selectedTextIndex: 2
   textOutput: {fileID: 2030365390}
   gameOverText: {fileID: 595299077}
   badEndingImage: {fileID: 942744044}
@@ -3283,7 +3282,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 8.191124}
+  m_AnchoredPosition: {x: 22.935154, y: -289.96588}
   m_SizeDelta: {x: 1000, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2030365389
