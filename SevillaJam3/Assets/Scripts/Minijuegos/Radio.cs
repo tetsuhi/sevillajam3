@@ -22,6 +22,10 @@ public class Radio : MonoBehaviour
 
     void OnEnable()
     {
+        radioButton.gameObject.SetActive(false);
+        radioSlider.gameObject.SetActive(false);
+        radioWheel.gameObject.SetActive(false);
+
         radioButton.GetComponent<Image>().color = Color.gray;
         radioSliderHandle.color = Color.gray;
         radioWheel.color = Color.gray;
@@ -68,14 +72,17 @@ public class Radio : MonoBehaviour
         switch (item)
         {
             case 0:
+                radioButton.gameObject.SetActive(true);
                 radioButton.interactable = true;
                 radioButton.GetComponent<Image>().color = Color.red;
                 break;
             case 1:
+                radioSlider.gameObject.SetActive(true);
                 radioSlider.interactable = true;
                 radioSliderHandle.color = Color.red;
                 break;            
             case 2:
+                radioWheel.gameObject.SetActive(true);
                 canGrabWheel = true;
                 radioWheel.color = Color.red;
                 break;

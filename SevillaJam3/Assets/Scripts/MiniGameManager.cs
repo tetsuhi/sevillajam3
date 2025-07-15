@@ -26,6 +26,8 @@ public class MiniGameManager : MonoBehaviour
     public GameObject MGUI5;
     public GameObject MG5;
 
+    public GameObject radioMusic;
+
     public GameObject defaultForecaster;
     public GameObject baldForecaster;
     public GameObject duckForecaster;
@@ -41,9 +43,9 @@ public class MiniGameManager : MonoBehaviour
     int randIndex;
 
     float audience = 0.5f;
-    float audienceGain = 0.04f;
-    float audienceLoss = 0.05f;
-    float audienceMegaLoss = 0.05f;
+    float audienceGain = 0.02f;
+    float audienceLoss = 0.02f;
+    float audienceMegaLoss = 0.02f;
 
     private float minTime = 10f;
     private float maxTime = 14f;
@@ -94,15 +96,15 @@ public class MiniGameManager : MonoBehaviour
 
     private void Update()
     {
-        if (minigameActive)
+        if (minigameActive || clickgameActive)
         {
-            if(tutorialMinigameBeat) audience -= audienceLoss * Time.deltaTime;
+            if(tutorialMinigameBeat && minigameActive) audience -= audienceLoss * Time.deltaTime;
+            if (clickgameActive) audience -= audienceMegaLoss * Time.deltaTime;
         }
         else
         {
             audience += audienceGain * Time.deltaTime;
         }
-        if(clickgameActive) audience -= audienceMegaLoss * Time.deltaTime;
 
         audience = Mathf.Clamp01(audience);
         audienceBar.fillAmount = audience;
@@ -157,6 +159,7 @@ public class MiniGameManager : MonoBehaviour
                 break;
             case 2:
                 MGB3.interactable = true;
+                radioMusic.SetActive(true);
                 break;
             case 3:
                 MGB4.interactable = true;
@@ -212,6 +215,7 @@ public class MiniGameManager : MonoBehaviour
     void Success()
     {
         AudioManager.instance.PlayCosaBien();
+        radioMusic.SetActive(false);
 
         minigameActive = false;
         Invoke("RealSuccess", 1f);
@@ -245,11 +249,12 @@ public class MiniGameManager : MonoBehaviour
 
     void ShowFirstMiniGame()
     {
-        EnableMiniGameSelection(0);
     }
 
     void BeginTutorial()
     {
+        EnableMiniGameSelection(0);
+
         begin = true;
 
         Image img = MGB1.GetComponent<Image>();

@@ -14,8 +14,8 @@ public class Dynamo : MonoBehaviour
     public GameObject audioDynamo;
 
     private float completion = 0f;
-    private float dischargeRate = 0.3f;
-    private float chargeRate = 0.25f;
+    private float dischargeRate = 0f;
+    private float chargeRate = 0.22f;
 
     private bool isDragging = false;
     private Vector2 lastDirection;
