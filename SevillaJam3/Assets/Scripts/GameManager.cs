@@ -7,8 +7,10 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
+#if !UNITY_WEBGL
         AudioManager.instance.PlayClick();
         SceneManager.LoadScene(0);
+#endif
     }
 
     public void OpenSettings()

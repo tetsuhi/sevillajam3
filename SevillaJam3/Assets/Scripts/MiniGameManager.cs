@@ -6,6 +6,7 @@ using System;
 
 public class MiniGameManager : MonoBehaviour
 {
+    public GameObject audienceWarning;
     public Image audienceBar;
     public Image audienceIcon;
     public GameObject buttons;
@@ -100,10 +101,12 @@ public class MiniGameManager : MonoBehaviour
         {
             if(tutorialMinigameBeat && minigameActive) audience -= audienceLoss * Time.deltaTime;
             if (clickgameActive) audience -= audienceMegaLoss * Time.deltaTime;
+            audienceWarning.SetActive(true);
         }
         else
         {
             audience += audienceGain * Time.deltaTime;
+            audienceWarning.SetActive(false);
         }
 
         audience = Mathf.Clamp01(audience);
@@ -132,11 +135,7 @@ public class MiniGameManager : MonoBehaviour
 
         int selectMiniGame = UnityEngine.Random.Range(0, 5);
 
-        if(lastGame == -1)
-        {
-            lastGame = selectMiniGame;
-        }
-        else if(lastGame == selectMiniGame)
+        if(lastGame == selectMiniGame)
         {
             selectMiniGame++;
             lastGame = selectMiniGame = selectMiniGame % 5;
