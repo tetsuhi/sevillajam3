@@ -16,11 +16,9 @@ public class TextSystem : MonoBehaviour
     private string[] speechText;
     private int speechIndex;
     private Coroutine textCoroutine;
-    private int tutorialBegin = 7;
-    private int tutorialStop = 11;
-    private int winGameIndex = 45;
+    private int tutorialStop = 7;
+    private int winGameIndex = 47;
 
-    public static event Action TutorialBegin;
     public static event Action TutorialStop;
     public static event Action GameOver;
 
@@ -126,10 +124,6 @@ public class TextSystem : MonoBehaviour
                 yield return new WaitForSeconds(delayPerChar);
             }
 
-            if (tutorialBegin - 1 == speechIndex)
-            {
-                TutorialBegin.Invoke();
-            }
             if (tutorialStop - 1 == speechIndex)
             {
                 TutorialStop.Invoke();

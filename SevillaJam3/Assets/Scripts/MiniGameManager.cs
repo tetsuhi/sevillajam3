@@ -64,7 +64,6 @@ public class MiniGameManager : MonoBehaviour
         Radio.Success += Success;
         Bucket.Success += Success;
         Map.Success += Success;
-        TextSystem.TutorialBegin += ShowFirstMiniGame;
         TextSystem.TutorialStop += BeginTutorial;
         TextSystem.GameOver += GameOver;
     }
@@ -76,7 +75,6 @@ public class MiniGameManager : MonoBehaviour
         Radio.Success -= Success;
         Bucket.Success -= Success;
         Map.Success -= Success;
-        TextSystem.TutorialBegin -= ShowFirstMiniGame;
         TextSystem.TutorialStop -= BeginTutorial;
         TextSystem.GameOver -= GameOver;
     }
@@ -244,10 +242,6 @@ public class MiniGameManager : MonoBehaviour
             TutorialComplete();
             TutorialDone.Invoke();
         }
-    }
-
-    void ShowFirstMiniGame()
-    {
     }
 
     void BeginTutorial()
